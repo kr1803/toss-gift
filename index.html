@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>토스 브랜드콘 선물</title>
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+    body {
+      background-color: #f6f8fa;
+      color: #191f28;
+      display: flex;
+      justify-content: center;
+      min-height: 100vh;
+      overflow: hidden;
+    }
+    .app-container {
+      width: 100%;
+      max-width: 480px;
+      background-color: #ffffff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 16px 24px 28px;
+    }
+    .nav-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 44px;
+      margin-bottom: 16px;
+    }
+    .back-btn {
+      font-size: 24px;
+      font-weight: 300;
+      color: #191f28;
+      cursor: pointer;
+    }
+    .info-text {
+      font-size: 15px;
+      font-weight: 500;
+      color: #4e5968;
+    }
+    .top-content {
+      text-align: left;
+    }
+    .green-tag {
+      font-size: 16px;
+      font-weight: 700;
+      color: #2b9e5a;
+      margin-bottom: 8px;
+    }
+    .title {
+      font-size: 26px;
+      font-weight: 700;
+      line-height: 1.38;
+      letter-spacing: -0.5px;
+      margin-bottom: 10px;
+      color: #191f28;
+    }
+    .subtitle {
+      font-size: 16px;
+      font-weight: 500;
+      color: #6b7684;
+    }
+    .center-image-box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      flex-grow: 1;
+      margin: 20px 0;
+    }
+    .center-image-box img {
+      width: 220px;
+      height: 220px;
+      object-fit: contain;
+      mix-blend-mode: multiply;
+      animation: float 2.5s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+    .bottom-area {
+      text-align: center;
+    }
+    .bottom-notice {
+      font-size: 15px;
+      font-weight: 600;
+      color: #4e5968;
+      margin-bottom: 20px;
+    }
+    .toss-btn {
+      width: 100%;
+      padding: 18px;
+      background-color: #3182f6;
+      color: #ffffff;
+      font-size: 17px;
+      font-weight: 600;
+      border: none;
+      border-radius: 16px;
+      cursor: pointer;
+    }
+    .toss-btn:active {
+      transform: scale(0.98);
+      background-color: #1b64da;
+    }
+
+    #jumpscare-screen {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: #000000;
+      z-index: 9999;
+      align-items: center;
+      justify-content: center;
+    }
+    #jumpscare-screen img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 1. 처음 보이는 브랜드콘 선물 화면 -->
+  <div class="app-container" id="question-screen">
+    <div>
+      <div class="nav-bar">
+        <span class="back-btn">&lt;</span>
+        <span class="info-text">안내</span>
+      </div>
+      <div class="top-content">
+        <p class="green-tag">달콤한 간식 타임! 🍫</p>
+        <h1 class="title">친구가 무료<br>초코에몽을 보냈어요</h1>
+        <p class="subtitle">지금 바로 받을 수 있어요.</p>
+      </div>
+    </div>
+
+    <div class="center-image-box">
+      <!-- choco.JPG 적용 완료 -->
+      <img src="choco.JPG" alt="초코에몽">
+    </div>
+    
+    <div class="bottom-area">
+      <p class="bottom-notice">기프티콘으로 바로 받아요</p>
+      <button class="toss-btn" onclick="triggerScare()">초코에몽 선물 받기</button>
+    </div>
+  </div>
+
+  <!-- 2. 버튼 누르면 나오는 움짤 화면 -->
+  <div id="jumpscare-screen">
+    <!-- scary.GIF 적용 완료 -->
+    <img id="scary-gif" src="scary.GIF" alt="깜짝이야">
+  </div>
+
+  <script>
+    function triggerScare() {
+      const gif = document.getElementById('scary-gif');
+      gif.src = 'scary.GIF';
+
+      document.getElementById('question-screen').style.display = 'none';
+      document.getElementById('jumpscare-screen').style.display = 'flex';
+      
+      if (navigator.vibrate) {
+        navigator.vibrate([400, 100, 600]);
+      }
+    }
+  </script>
+
+</body>
+</html>
